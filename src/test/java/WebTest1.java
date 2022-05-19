@@ -63,4 +63,27 @@ public class WebTest1 {
         driver.quit();
 
     }
+
+    @Test
+    public void testMenuLastTitle() {
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String drivePath = "C:\\Programs\\chromedriver_win32\\chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "SUBMIT NEW LANGUAGE";
+
+        System.setProperty(chromeDriver, drivePath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement lastMenuTitle = driver.findElement(
+        By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/submitnewlanguage.html']"));
+
+        String actualResult = lastMenuTitle.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
+
+        driver.quit();
+    }
 }
